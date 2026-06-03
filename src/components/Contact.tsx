@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Send, Check, MessageSquare, Mail } from 'lucide-react';
 
 const InstagramIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) => (
@@ -54,18 +54,27 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
+  const [prevSelectedPlan, setPrevSelectedPlan] = useState(selectedPlan);
+  if (selectedPlan !== prevSelectedPlan) {
+    setPrevSelectedPlan(selectedPlan);
     if (selectedPlan) {
-      setFormData(prev => ({ ...prev, plan: selectedPlan }));
-      if (selectedPlan.includes('Tier 3')) {
-        setFormData(prev => ({ ...prev, budget: 10000 }));
-      } else if (selectedPlan.includes('Tier 2')) {
-        setFormData(prev => ({ ...prev, budget: 15000 }));
-      } else if (selectedPlan.includes('Tier 1')) {
-        setFormData(prev => ({ ...prev, budget: 20000 }));
-      }
+      setFormData(prev => {
+        let budget = prev.budget;
+        if (selectedPlan.includes('Tier 3')) {
+          budget = 10000;
+        } else if (selectedPlan.includes('Tier 2')) {
+          budget = 15000;
+        } else if (selectedPlan.includes('Tier 1')) {
+          budget = 20000;
+        }
+        return {
+          ...prev,
+          plan: selectedPlan,
+          budget
+        };
+      });
     }
-  }, [selectedPlan]);
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

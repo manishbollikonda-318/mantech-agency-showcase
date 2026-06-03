@@ -39,9 +39,12 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
           </p>
         </div>
 
-        {/* Dynamic Grainy Cosmic Sphere Graphic */}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
-          <svg width="220" height="220" viewBox="0 0 200 200">
+        {/* Dynamic Grainy Cosmic Sphere Graphic (Larger on Desktop, responsive on Mobile) */}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '2.5rem 0' }}>
+          <svg 
+            viewBox="0 0 200 200" 
+            style={{ width: '100%', maxWidth: '380px', height: 'auto', display: 'block' }}
+          >
             <defs>
               <radialGradient id="heroPlanetGrad" cx="30%" cy="30%" r="70%">
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />

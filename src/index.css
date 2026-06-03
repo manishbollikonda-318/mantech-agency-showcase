@@ -2,26 +2,26 @@
 
 :root {
   /* Fonts */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Colors */
   --bg-dark: #000000;
-  --bg-gradient-end: #0a35a5;
+  --bg-gradient-end: #0c3ab7;
   --bg-surface: rgba(0, 0, 0, 0.6);
-  --bg-surface-hover: rgba(10, 53, 165, 0.15);
+  --bg-surface-hover: rgba(12, 58, 183, 0.15);
   
-  --color-accent: #3b82f6; /* Custom Azure Blue */
+  --color-accent: #3b82f6;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-bright: rgba(255, 255, 255, 0.18);
   
-  --text-main: #e2e8f0;
-  --text-muted: #64748b;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
   --text-bright: #ffffff;
 
-  --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-normal: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -37,7 +37,7 @@
 
 html, body {
   background: var(--bg-dark);
-  background-image: linear-gradient(to bottom, var(--bg-dark) 50%, var(--bg-gradient-end) 100%);
+  background-image: linear-gradient(to bottom, var(--bg-dark) 55%, var(--bg-gradient-end) 100%);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
@@ -48,18 +48,18 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Typography settings */
+/* Typography */
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 500;
   color: var(--text-bright);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .mono-label {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -68,19 +68,20 @@ h1, h2, h3, h4 {
 .grid-container {
   display: grid;
   border: 1px solid var(--color-border);
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   position: relative;
+  width: 100%;
 }
 
 .grid-cell {
   border: 1px solid var(--color-border);
-  padding: 2.5rem;
+  padding: 3rem;
   position: relative;
 }
 
-/* Custom thin crosshairs design */
+/* Thin crosshairs design */
 .crosshair-cell::before, .crosshair-cell::after {
   content: '';
   position: absolute;
@@ -108,11 +109,6 @@ h1, h2, h3, h4 {
   to { transform: rotate(360deg); }
 }
 
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.5; }
-}
-
 @keyframes slide-fade-in {
   from {
     opacity: 0;
@@ -124,25 +120,24 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Layout SPA Pages */
+/* Layout SPA Pages (Full screen for PC/Desktop) */
 .main-wrapper {
   min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6rem 4rem 4rem 12rem;
+  padding: 7rem 4rem 4rem 8rem; /* Reduced left padding to maximize space */
 }
 
 .section-container {
   width: 100%;
-  max-width: 1100px;
-  display: none;
+  max-width: 100%; /* Fully stretch width to prevent wasting empty margins */
+  animation: slide-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .section-container.active {
   display: block;
-  animation: slide-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Persistent Header */
@@ -151,13 +146,13 @@ h1, h2, h3, h4 {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 4rem 1.5rem 12rem;
+  padding: 1.5rem 4rem 1.5rem 8rem; /* Aligned with wrapper padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 99;
   border-bottom: 1px solid var(--color-border);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -170,21 +165,21 @@ h1, h2, h3, h4 {
 }
 
 .logo-text {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   letter-spacing: -0.02em;
   color: var(--text-bright);
 }
 
 .logo-sparkle {
   color: var(--text-bright);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .step-indicator {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
@@ -192,10 +187,10 @@ h1, h2, h3, h4 {
   color: var(--text-bright);
 }
 
-/* Navigation dots */
+/* Navigation dots (Floating on the left) */
 .progress-container {
   position: fixed;
-  left: 4rem;
+  left: 3rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
@@ -249,7 +244,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.85rem 2rem;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -273,7 +268,7 @@ h1, h2, h3, h4 {
 
 .btn-tech-link {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   background: transparent;
   border: none;
@@ -288,12 +283,11 @@ h1, h2, h3, h4 {
   color: var(--text-bright);
 }
 
-/* PAGE 1: HERO */
+/* PAGE 1: HERO (Fullscreen optimization) */
 .hero-layout-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   width: 100%;
-  min-height: 480px;
 }
 
 .hero-left {
@@ -306,23 +300,24 @@ h1, h2, h3, h4 {
 
 .hero-logo-large {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: 5rem; /* Increased size for desktop */
   font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--text-bright);
   margin-top: 1rem;
+  line-height: 0.95;
 }
 
 .hero-paragraph-block {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 420px;
+  max-width: 500px; /* Increased text block width */
 }
 
 .hero-desc-mono {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 1rem; /* Slightly larger body pitch */
   line-height: 1.7;
   color: var(--text-main);
   text-align: left;
@@ -345,14 +340,14 @@ h1, h2, h3, h4 {
 
 .portfolio-title-mono {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
 .portfolio-desc-mono {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -366,7 +361,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 400px;
+  min-height: 480px;
   cursor: pointer;
   transition: var(--transition-fast);
 }
@@ -401,15 +396,15 @@ h1, h2, h3, h4 {
 }
 
 .portfolio-card-title {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--text-bright);
 }
 
 .portfolio-card-desc {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1.25rem;
@@ -417,7 +412,7 @@ h1, h2, h3, h4 {
 
 .portfolio-card-metric {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--color-accent);
   display: flex;
   align-items: center;
@@ -436,7 +431,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 480px;
+  min-height: 520px;
 }
 
 .pricing-card-wire.featured {
@@ -445,7 +440,7 @@ h1, h2, h3, h4 {
 
 .pricing-card-title-mono {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
   color: var(--text-bright);
@@ -453,7 +448,7 @@ h1, h2, h3, h4 {
 
 .pricing-card-price-mono {
   font-family: var(--font-mono);
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--text-bright);
   margin: 1.5rem 0;
   display: flex;
@@ -461,7 +456,7 @@ h1, h2, h3, h4 {
 }
 
 .pricing-card-price-mono span {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -475,7 +470,7 @@ h1, h2, h3, h4 {
 
 .pricing-card-feature-item {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-main);
   display: flex;
   align-items: flex-start;
@@ -491,7 +486,7 @@ h1, h2, h3, h4 {
 /* PAGE 4: CONTACT */
 .contact-grid-wire {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
   width: 100%;
 }
 
@@ -505,7 +500,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem;
+  padding: 1.5rem;
   border: 1px solid var(--color-border);
   text-decoration: none;
   color: var(--text-main);
@@ -520,19 +515,19 @@ h1, h2, h3, h4 {
 .contact-channel-meta {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .contact-channel-title {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-bright);
 }
 
 .contact-channel-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
@@ -543,7 +538,7 @@ h1, h2, h3, h4 {
 }
 
 .contact-form-title {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
@@ -556,7 +551,7 @@ h1, h2, h3, h4 {
 
 .contact-form-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -565,9 +560,9 @@ h1, h2, h3, h4 {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--text-bright);
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1.25rem;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   outline: none;
   width: 100%;
   transition: var(--transition-fast);
@@ -616,26 +611,25 @@ h1, h2, h3, h4 {
   }
   
   .progress-container {
-    display: none; /* Hide side dots on mobile */
+    display: none;
   }
 
   .app-header {
     padding: 1rem 1.5rem;
   }
 
-  /* Stacking all grids */
   .hero-layout-grid {
     grid-template-columns: 1fr;
     min-height: auto;
   }
 
   .hero-right {
-    order: -1; /* Place visual first on mobile */
+    order: -1;
     margin-bottom: 2rem;
   }
 
   .hero-logo-large {
-    font-size: 2.8rem;
+    font-size: 3rem;
     text-align: center;
     width: 100%;
   }
@@ -670,7 +664,6 @@ h1, h2, h3, h4 {
   .pricing-card-wire {
     min-height: auto;
     margin-bottom: 2rem;
-    padding: 2rem 1.5rem !important;
   }
 
   .contact-grid-wire {
@@ -679,6 +672,6 @@ h1, h2, h3, h4 {
   }
   
   .grid-cell {
-    padding: 1.5rem !important; /* Reduce padding on mobile cells */
+    padding: 1.5rem !important;
   }
 }

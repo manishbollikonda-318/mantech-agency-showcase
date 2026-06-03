@@ -83,6 +83,23 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
       alert('Please fill out your Name and Email address.');
       return;
     }
+    
+    // Compile details into a readable prefilled WhatsApp message
+    const messageText = `Hello ManTech! 
+
+*Onboarding Project Brief*
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Plan: ${formData.plan}
+- Target Budget: ${formatBudget(formData.budget)}
+- Requirements: ${formData.message || 'None specified'}`;
+
+    const encodedText = encodeURIComponent(messageText);
+    const waUrl = `https://wa.me/919762105295?text=${encodedText}`;
+    
+    // Open WhatsApp in a new tab to send details directly
+    window.open(waUrl, '_blank');
+    
     setIsSubmitted(true);
   };
 

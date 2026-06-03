@@ -70,7 +70,6 @@ h1, h2, h3, h4 {
 /* 1px Grid Architecture */
 .grid-container {
   display: grid;
-  border: 1px solid var(--color-border);
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -79,31 +78,13 @@ h1, h2, h3, h4 {
 }
 
 .grid-cell {
-  border: 1px solid var(--color-border);
   padding: 3rem;
   position: relative;
 }
 
 /* Thin crosshairs design */
 .crosshair-cell::before, .crosshair-cell::after {
-  content: '';
-  position: absolute;
-  background: var(--color-border-bright);
-  pointer-events: none;
-}
-
-.crosshair-cell::before {
-  top: -10px;
-  bottom: -10px;
-  left: 50%;
-  width: 1px;
-}
-
-.crosshair-cell::after {
-  left: -10px;
-  right: -10px;
-  top: 50%;
-  height: 1px;
+  display: none !important;
 }
 
 /* Animations */
@@ -140,7 +121,6 @@ h1, h2, h3, h4 {
   align-items: stretch;
   min-height: calc(100vh - 8rem); /* Occupy full viewport minus header space */
   padding: 6rem 0;
-  border-bottom: 1px dashed var(--color-border); /* Dashed bottom borders for grid look */
 }
 
 /* Custom Navigation Bar Styles */

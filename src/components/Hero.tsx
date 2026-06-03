@@ -9,7 +9,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
   return (
     <div className="grid-container hero-layout-grid">
       {/* Left Cell: Logo and CTA */}
-      <div className="grid-cell hero-left crosshair-cell">
+      <div className="grid-cell hero-left crosshair-cell reveal-element">
         <div>
           <span className="mono-label">✦ ESTABLISHED 2026</span>
           <h1 className="hero-logo-large">MANTECH<span className="logo-sparkle">✦</span></h1>
@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
         </div>
         
         <div style={{ marginTop: '2.5rem' }}>
-          <button onClick={onNext} className="btn-tech">
+          <button onClick={onNext} className="btn-tech btn-tech-pulse">
             Enter Showcase
             <ArrowRight size={14} />
           </button>
@@ -30,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
       </div>
 
       {/* Right Cell: Monospace Pitch and Custom Stippled Cosmic Sphere */}
-      <div className="grid-cell hero-right crosshair-cell" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className="grid-cell hero-right crosshair-cell reveal-element" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         {/* Spirograph Logo & Paragraph Block */}
         <div className="hero-paragraph-block">
           <svg width="48" height="48" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" style={{ opacity: 0.85 }}>

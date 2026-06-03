@@ -44,7 +44,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext }) => {
 
   return (
     <div>
-      <div className="portfolio-header">
+      <div className="portfolio-header reveal-element">
         <span className="mono-label">✦ Curated Creations</span>
         <h2 className="portfolio-title-mono">Engineered Masterpieces</h2>
         <p className="portfolio-desc-mono">A showcase of high-performance digital projects built with technical precision.</p>
@@ -54,7 +54,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext }) => {
         {projects.map((project, idx) => (
           <div 
             key={idx} 
-            className="grid-cell portfolio-card-wire crosshair-cell"
+            className="grid-cell portfolio-card-wire crosshair-cell reveal-element"
             onClick={() => window.open(project.url, '_blank')}
           >
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -81,7 +81,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext }) => {
         ))}
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', justifyContent: 'flex-start' }}>
+      <div className="reveal-element" style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', justifyContent: 'flex-start' }}>
         <button onClick={onNext} className="btn-tech">
           Continue to Pricing
           <ArrowRight size={14} />

@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
 import { Pricing } from './components/Pricing';
 import { Contact } from './components/Contact';
+import { Chatbot } from './components/Chatbot';
 import './App.css';
 
 function App() {
@@ -46,6 +47,37 @@ function App() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Intersection Observer for Scroll Reveals
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const elements = document.querySelectorAll('.reveal-element');
+    elements.forEach((el) => observer.observe(el));
+
+    // Re-check elements after a small timeout to cover immediate mounting
+    const timer = setTimeout(() => {
+      const updatedElements = document.querySelectorAll('.reveal-element');
+      updatedElements.forEach((el) => observer.observe(el));
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      elements.forEach((el) => observer.unobserve(el));
+    };
   }, []);
 
   return (
@@ -113,6 +145,9 @@ function App() {
           <Contact selectedPlan={selectedPlan} />
         </section>
       </main>
+
+      {/* Floating AI Chatbot Assistant */}
+      <Chatbot />
     </>
   );
 }

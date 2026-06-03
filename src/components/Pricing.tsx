@@ -60,15 +60,36 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
     }
   ];
 
+  const testimonials = [
+    {
+      quote: "MANTECH delivered our flagship brand platform with flawless execution. The custom animations are fluid and performant, exactly as promised.",
+      author: "SARAH CHEN",
+      role: "DESIGN DIRECTOR, NEXUS",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"
+    },
+    {
+      quote: "The interactive AR portfolio they built for us completely revolutionized our pitch decks. Dynamic, modern, and absolutely zero lag.",
+      author: "MARCUS VANCE",
+      role: "FOUNDER, HANDCONNECT",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"
+    },
+    {
+      quote: "An elite engineering service. Manish understood our design aesthetics perfectly and transformed it into a clean, modern masterpiece.",
+      author: "ADITYA SHARMA",
+      role: "CTO, VITRAS DECOR",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80"
+    }
+  ];
+
   return (
     <div>
-      <div className="portfolio-header">
+      <div className="portfolio-header reveal-element">
         <span className="mono-label">✦ Project Pricing</span>
         <h2 className="portfolio-title-mono">Transparent Frameworks</h2>
         <p className="portfolio-desc-mono">Bespoke pricing tiers optimized for clarity, revision freedom, and performance.</p>
       </div>
 
-      <div className="grid-container pricing-grid-wire">
+      <div className="grid-container pricing-grid-wire reveal-element">
         {tiers.map((tier, idx) => (
           <div 
             key={idx} 
@@ -130,7 +151,29 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
         ))}
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', flexDirection: 'column', alignItems: 'flex-start' }}>
+      {/* Testimonials Block */}
+      <div className="testimonials-section reveal-element">
+        <div className="portfolio-header" style={{ marginTop: '4rem', marginBottom: '2rem' }}>
+          <span className="mono-label">✦ Client Feedback</span>
+          <h2 className="portfolio-title-mono">Trusted Verifications</h2>
+        </div>
+        <div className="testimonials-grid">
+          {testimonials.map((t, idx) => (
+            <div key={idx} className="testimonial-card">
+              <p className="testimonial-quote">"{t.quote}"</p>
+              <div className="testimonial-author-block">
+                <img src={t.avatar} alt={t.author} className="testimonial-avatar" />
+                <div>
+                  <div className="testimonial-author-name">{t.author}</div>
+                  <div className="testimonial-author-role">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="reveal-element" style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', flexDirection: 'column', alignItems: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', opacity: 0.7 }}>
           <HelpCircle size={14} style={{ marginTop: '0.2rem', color: 'var(--text-muted)' }} />
           <p className="portfolio-desc-mono" style={{ textTransform: 'none' }}>

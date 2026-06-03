@@ -111,13 +111,13 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
 
   return (
     <div>
-      <div className="portfolio-header" style={{ marginBottom: '3rem' }}>
+      <div className="portfolio-header reveal-element" style={{ marginBottom: '3rem' }}>
         <span className="mono-label">✦ Establish Connection</span>
         <h2 className="portfolio-title-mono">Onboarding Briefing</h2>
         <p className="portfolio-desc-mono">Submit details to schedule an engineering call or choose an instant channel.</p>
       </div>
 
-      <div className="grid-container contact-grid-wire">
+      <div className="grid-container contact-grid-wire reveal-element">
         {/* Left Side: Communication buttons */}
         <div className="grid-cell contact-channels-wire crosshair-cell" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           
@@ -129,7 +129,7 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
             className="contact-channel-button-wire"
           >
             <div className="contact-channel-meta">
-              <MessageSquare size={18} style={{ color: 'var(--text-bright)' }} />
+              <MessageSquare size={18} style={{ color: 'var(--text-bright)' }} className="whatsapp-icon-animate" />
               <div>
                 <h4 className="contact-channel-title">WhatsApp</h4>
                 <p className="contact-channel-subtitle">Redirect to Manish</p>

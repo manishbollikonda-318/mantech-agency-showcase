@@ -336,7 +336,8 @@ h1, h2, h3, h4 {
 .hero-left {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2.5rem;
   align-items: flex-start;
   text-align: left;
 }

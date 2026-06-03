@@ -53,7 +53,7 @@ function App() {
       {/* Persistent App Header */}
       <header className="app-header">
         <div className="logo-container" onClick={() => scrollToSection('hero')}>
-          <span className="logo-text">mantech</span>
+          <span className="logo-text">MANTECH</span>
           <span className="logo-sparkle">✦</span>
         </div>
         

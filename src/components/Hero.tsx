@@ -11,11 +11,17 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
       {/* Left Cell: Logo and CTA */}
       <div className="grid-cell hero-left crosshair-cell">
         <div>
-          <span className="mono-label">✦ Established 2026</span>
-          <h1 className="hero-logo-large">mantech<span className="logo-sparkle">✦</span></h1>
+          <span className="mono-label">✦ ESTABLISHED 2026</span>
+          <h1 className="hero-logo-large">MANTECH<span className="logo-sparkle">✦</span></h1>
+          <p style={{ fontSize: '1.25rem', fontFamily: 'var(--font-heading)', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '0.5rem', fontWeight: 500 }}>
+            PREMIUM WEB CREATION
+          </p>
+          <p style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '1rem', fontWeight: 700 }}>
+            BUILT BY MANISH BOLLIKONDA
+          </p>
         </div>
         
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ marginTop: '2.5rem' }}>
           <button onClick={onNext} className="btn-tech">
             Enter Showcase
             <ArrowRight size={14} />
@@ -35,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
             <circle cx="50" cy="65" r="15" />
           </svg>
           <p className="hero-desc-mono">
-            mantech doesn't just design and code. We construct premium, tailored digital spaces that inspire, connect, and elevate the way people experience the web. We engineer what the internet can be.
+            Welcome to MANTECH. We design and engineer premium, high-performance websites that captivate audiences and drive results. We believe your digital presence should be as unique as your vision—blending sleek visual architecture with state-of-the-art technology to build fast, responsive, and memorable web experiences. Let's collaborate to build something extraordinary.
           </p>
         </div>
 

@@ -95,7 +95,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan, onBack }) => {
               </div>
             )}
 
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="mono-label" style={{ color: tier.isPopular ? 'var(--text-bright)' : 'var(--text-muted)' }}>
                   {tier.tierLabel}

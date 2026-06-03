@@ -58,7 +58,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext, onBack }) => {
             className="grid-cell portfolio-card-wire crosshair-cell"
             onClick={() => window.open(project.url, '_blank')}
           >
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               <div className="portfolio-card-image-box">
                 <img src={project.imageUrl} alt={project.title} className="portfolio-card-image" />
               </div>

@@ -441,6 +441,7 @@ h1, h2, h3, h4 {
   flex-direction: column;
   justify-content: space-between;
   min-height: 480px;
+  height: 100%;
   cursor: pointer;
   transition: var(--transition-fast);
 }
@@ -511,6 +512,7 @@ h1, h2, h3, h4 {
   flex-direction: column;
   justify-content: space-between;
   min-height: 520px;
+  height: 100%;
 }
 
 .pricing-card-wire.featured {

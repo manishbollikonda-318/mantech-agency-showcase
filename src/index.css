@@ -109,17 +109,6 @@ h1, h2, h3, h4 {
   to { transform: rotate(360deg); }
 }
 
-@keyframes slide-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Layout SPA Pages (Full screen for PC/Desktop) */
 .main-wrapper {
   min-height: 100vh;
@@ -127,17 +116,31 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 7rem 4rem 4rem 8rem; /* Reduced left padding to maximize space */
+  padding: 7rem 4rem 4rem 8rem;
+  position: relative; /* Parent anchor for absolute child sections */
 }
 
+/* Section Container positioning transitions (restoring original behavior to prevent collapse) */
 .section-container {
   width: 100%;
-  max-width: 100%; /* Fully stretch width to prevent wasting empty margins */
-  animation: slide-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: 100%;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .section-container.active {
-  display: block;
+  position: relative;
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
 }
 
 /* Persistent Header */
@@ -146,7 +149,7 @@ h1, h2, h3, h4 {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 4rem 1.5rem 8rem; /* Aligned with wrapper padding */
+  padding: 1.5rem 4rem 1.5rem 8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -187,7 +190,7 @@ h1, h2, h3, h4 {
   color: var(--text-bright);
 }
 
-/* Navigation dots (Floating on the left) */
+/* Navigation dots */
 .progress-container {
   position: fixed;
   left: 3rem;
@@ -283,7 +286,7 @@ h1, h2, h3, h4 {
   color: var(--text-bright);
 }
 
-/* PAGE 1: HERO (Fullscreen optimization) */
+/* PAGE 1: HERO */
 .hero-layout-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -300,7 +303,7 @@ h1, h2, h3, h4 {
 
 .hero-logo-large {
   font-family: var(--font-heading);
-  font-size: 5rem; /* Increased size for desktop */
+  font-size: 5rem;
   font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--text-bright);
@@ -312,12 +315,12 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 500px; /* Increased text block width */
+  max-width: 500px;
 }
 
 .hero-desc-mono {
   font-family: var(--font-body);
-  font-size: 1rem; /* Slightly larger body pitch */
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--text-main);
   text-align: left;
@@ -604,34 +607,49 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
-/* MOBILE RESPONSIVENESS RULES (Mobile-First Optimization) */
+/* MOBILE RESPONSIVENESS RULES */
 @media (max-width: 1024px) {
   .main-wrapper {
-    padding: 5rem 1rem 2rem 1rem;
+    padding: 6rem 1.5rem 3rem 1.5rem;
   }
   
   .progress-container {
-    display: none;
+    display: none; /* Hide dots on mobile */
   }
 
   .app-header {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
   }
 
+  /* Fixed mobile positioning transitions to prevent overlap on small screens */
+  .section-container {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+  }
+
+  .section-container.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+    display: flex;
+  }
+
+  /* Force stack columns on mobile viewports */
   .hero-layout-grid {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    grid-template-columns: 1fr !important;
   }
 
   .hero-right {
     order: -1;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero-logo-large {
-    font-size: 3rem;
+    font-size: 3.2rem;
     text-align: center;
-    width: 100%;
   }
 
   .hero-left {
@@ -649,26 +667,26 @@ h1, h2, h3, h4 {
   }
 
   .portfolio-grid-wire {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .portfolio-card-wire {
     min-height: auto;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .pricing-grid-wire {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .pricing-card-wire {
     min-height: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .contact-grid-wire {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem;
   }
   
   .grid-cell {

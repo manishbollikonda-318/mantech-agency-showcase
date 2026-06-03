@@ -440,8 +440,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 480px;
-  height: 100%;
+  height: 480px; /* Fixed height on desktop to keep everything aligned */
   cursor: pointer;
   transition: var(--transition-fast);
 }
@@ -511,8 +510,8 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 520px;
-  height: 100%;
+  height: 560px; /* Fixed height on desktop to align buttons */
+  padding: 2.5rem 2rem; /* Reduced padding to save vertical space and prevent text overflow */
 }
 
 .pricing-card-wire.featured {
@@ -761,6 +760,7 @@ h1, h2, h3, h4 {
 
   .portfolio-card-wire {
     min-height: auto;
+    height: auto !important; /* Allow natural auto height on mobile */
     margin-bottom: 2rem;
   }
 
@@ -770,7 +770,9 @@ h1, h2, h3, h4 {
 
   .pricing-card-wire {
     min-height: auto;
+    height: auto !important; /* Allow natural auto height on mobile */
     margin-bottom: 1.5rem;
+    padding: 1.5rem !important; /* Restore standard mobile padding */
   }
 
   .contact-grid-wire {

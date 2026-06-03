@@ -12,7 +12,10 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
       <div className="grid-cell hero-left crosshair-cell reveal-element">
         <div>
           <span className="mono-label">✦ ESTABLISHED 2026</span>
-          <h1 className="hero-logo-large">MANTECH<span className="logo-sparkle">✦</span></h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+            <img src="/favicon.svg" alt="MANTECH Logo" style={{ width: '68px', height: '68px', filter: 'drop-shadow(0 0 16px rgba(59, 130, 246, 0.4))', display: 'block' }} />
+            <h1 className="hero-logo-large" style={{ marginTop: 0, marginBottom: 0 }}>MANTECH</h1>
+          </div>
           <p style={{ fontSize: '1.25rem', fontFamily: 'var(--font-heading)', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '0.5rem', fontWeight: 500 }}>
             PREMIUM WEB CREATION
           </p>

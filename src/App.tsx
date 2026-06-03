@@ -84,9 +84,9 @@ function App() {
     <>
       {/* Persistent App Header */}
       <header className="app-header">
-        <div className="logo-container" onClick={() => scrollToSection('hero')}>
+        <div className="logo-container" onClick={() => scrollToSection('hero')} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <img src="/favicon.svg" alt="MANTECH Logo" style={{ width: '22px', height: '22px', display: 'block' }} />
           <span className="logo-text">MANTECH</span>
-          <span className="logo-sparkle">✦</span>
         </div>
         
         <nav className="header-nav">

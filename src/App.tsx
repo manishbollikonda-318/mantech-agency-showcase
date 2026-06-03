@@ -111,6 +111,42 @@ function App() {
           <Contact selectedPlan={selectedPlan} onBack={handleBackStep} />
         </section>
       </main>
+
+      {/* Persistent Bottom Exoskeleton Navigation Bar */}
+      <footer className="app-footer">
+        <div>
+          {activeStep > 1 ? (
+            <button onClick={handleBackStep} className="btn-tech-link">
+              ← Prev
+            </button>
+          ) : (
+            <span style={{ display: 'inline-block', width: '40px' }}></span>
+          )}
+        </div>
+        
+        <div className="footer-center-steps">
+          {steps.map((step) => (
+            <span
+              key={step.number}
+              className={`footer-step-dot ${activeStep === step.number ? 'active' : ''}`}
+              onClick={() => handleGoToStep(step.number)}
+              title={step.subtitle}
+            >
+              {step.number}
+            </span>
+          ))}
+        </div>
+
+        <div>
+          {activeStep < 4 ? (
+            <button onClick={handleNextStep} className="btn-tech">
+              Next: {steps[activeStep].subtitle} →
+            </button>
+          ) : (
+            <span style={{ display: 'inline-block', width: '80px' }}></span>
+          )}
+        </div>
+      </footer>
     </>
   );
 }

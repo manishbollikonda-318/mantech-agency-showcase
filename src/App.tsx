@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
 import { Pricing } from './components/Pricing';
@@ -8,6 +9,7 @@ import './App.css';
 
 function App() {
   const [selectedPlan, setSelectedPlan] = useState<string>('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('hero');
 
   // Smooth scroll helper
@@ -84,12 +86,13 @@ function App() {
     <>
       {/* Persistent App Header */}
       <header className="app-header">
-        <div className="logo-container" onClick={() => scrollToSection('hero')} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div className="logo-container" onClick={() => { scrollToSection('hero'); setMobileMenuOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <img src="/favicon.svg" alt="MANTECH Logo" style={{ width: '22px', height: '22px', display: 'block' }} />
           <span className="logo-text">MANTECH</span>
         </div>
         
-        <nav className="header-nav">
+        {/* Desktop Navigation */}
+        <nav className="header-nav desktop-only">
           <button 
             className={`header-nav-link ${activeSection === 'hero' ? 'active' : ''}`}
             onClick={() => scrollToSection('hero')}
@@ -116,12 +119,58 @@ function App() {
           </button>
         </nav>
 
-        <div>
+        {/* Desktop CTA */}
+        <div className="desktop-only">
           <button onClick={() => scrollToSection('contact')} className="btn-tech">
             Get Started
           </button>
         </div>
+
+        {/* Mobile Toggle Button */}
+        <button 
+          className="hamburger-btn mobile-only" 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </header>
+
+      {/* Mobile Navigation Overlay */}
+      <div className={`mobile-nav-overlay mobile-only ${mobileMenuOpen ? 'open' : ''}`}>
+        <button 
+          className={`mobile-nav-link ${activeSection === 'hero' ? 'active' : ''}`}
+          onClick={() => { scrollToSection('hero'); setMobileMenuOpen(false); }}
+        >
+          Intro
+        </button>
+        <button 
+          className={`mobile-nav-link ${activeSection === 'portfolio' ? 'active' : ''}`}
+          onClick={() => { scrollToSection('portfolio'); setMobileMenuOpen(false); }}
+        >
+          Work
+        </button>
+        <button 
+          className={`mobile-nav-link ${activeSection === 'pricing' ? 'active' : ''}`}
+          onClick={() => { scrollToSection('pricing'); setMobileMenuOpen(false); }}
+        >
+          Pricing
+        </button>
+        <button 
+          className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+          onClick={() => { scrollToSection('contact'); setMobileMenuOpen(false); }}
+        >
+          Briefing Hub
+        </button>
+        
+        <button 
+          onClick={() => { scrollToSection('contact'); setMobileMenuOpen(false); }} 
+          className="btn-tech btn-tech-pulse"
+          style={{ marginTop: '1rem', width: '100%', maxWidth: '240px' }}
+        >
+          Get Started
+        </button>
+      </div>
 
       {/* Main SPA Sections Wrapper */}
       <main className="main-wrapper">

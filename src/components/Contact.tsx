@@ -132,7 +132,7 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
               <MessageSquare size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
                 <h4 className="contact-channel-title">WhatsApp</h4>
-                <p className="contact-channel-subtitle">Redirect to मनीष</p>
+                <p className="contact-channel-subtitle">Redirect to Manish</p>
               </div>
             </div>
             <span className="mono-label" style={{ fontSize: '0.65rem' }}>Open Chat →</span>

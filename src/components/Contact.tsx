@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, ChevronLeft, Check, MessageSquare, Mail } from 'lucide-react';
+import { Send, Check, MessageSquare, Mail } from 'lucide-react';
 
 const InstagramIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) => (
   <svg
@@ -41,10 +41,9 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) 
 
 interface ContactProps {
   selectedPlan: string;
-  onBack: () => void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
+export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -295,12 +294,6 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
             </div>
           )}
         </div>
-      </div>
-
-      <div style={{ marginTop: '2.5rem' }}>
-        <button onClick={onBack} className="btn-tech-link">
-          <ChevronLeft size={14} /> Back to Pricing
-        </button>
       </div>
     </div>
   );

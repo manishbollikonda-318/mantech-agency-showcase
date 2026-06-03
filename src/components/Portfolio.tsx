@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ChevronLeft, ExternalLink, Activity } from 'lucide-react';
+import { ArrowRight, ExternalLink, Activity } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -12,10 +12,9 @@ interface Project {
 
 interface PortfolioProps {
   onNext: () => void;
-  onBack: () => void;
 }
 
-export const Portfolio: React.FC<PortfolioProps> = ({ onNext, onBack }) => {
+export const Portfolio: React.FC<PortfolioProps> = ({ onNext }) => {
   const projects: Project[] = [
     {
       title: 'Vitras',
@@ -86,9 +85,6 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext, onBack }) => {
         <button onClick={onNext} className="btn-tech">
           Continue to Pricing
           <ArrowRight size={14} />
-        </button>
-        <button onClick={onBack} className="btn-tech-link">
-          <ChevronLeft size={14} /> Back to Intro
         </button>
       </div>
     </div>

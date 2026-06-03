@@ -1,152 +1,118 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
 import { Pricing } from './components/Pricing';
 import { Contact } from './components/Contact';
 import './App.css';
 
-interface StepInfo {
-  number: number;
-  title: string;
-  subtitle: string;
-}
-
 function App() {
-  const [activeStep, setActiveStep] = useState<number>(1);
   const [selectedPlan, setSelectedPlan] = useState<string>('');
+  const [activeSection, setActiveSection] = useState<string>('hero');
 
-  const steps: StepInfo[] = [
-    { number: 1, title: 'The Hook', subtitle: 'Introduction' },
-    { number: 2, title: 'Our Work', subtitle: 'Portfolio' },
-    { number: 3, title: 'Pricing Plan', subtitle: 'Tiers' },
-    { number: 4, title: 'Contact Hub', subtitle: 'Get Started' }
-  ];
-
-  const handleNextStep = () => {
-    if (activeStep < 4) {
-      setActiveStep(prev => prev + 1);
-    }
-  };
-
-  const handleBackStep = () => {
-    if (activeStep > 1) {
-      setActiveStep(prev => prev - 1);
+  // Smooth scroll helper
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   const handleSelectPlan = (planName: string) => {
     setSelectedPlan(planName);
-    setActiveStep(4); // Immediately jump to contact form
+    // Give state a moment to update and then scroll
+    setTimeout(() => {
+      scrollToSection('contact');
+    }, 50);
   };
 
-  const handleGoToStep = (stepNumber: number) => {
-    setActiveStep(stepNumber);
-  };
+  // Scroll Spy for highlighting active section in Header Nav
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'portfolio', 'pricing', 'contact'];
+      const scrollPos = window.scrollY + 120; // Offset for sticky header
 
-  // Get active step title or label
-  const currentStep = steps.find(s => s.number === activeStep) || steps[0];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      {/* Top Sticky Progress Indicator (Mobile Viewports) */}
-      <div className="top-progress-bar">
-        <div 
-          className="top-progress-fill" 
-          style={{ width: `${((activeStep - 1) / 3) * 100}%` }}
-        ></div>
-      </div>
-
       {/* Persistent App Header */}
       <header className="app-header">
-        <div className="logo-container" onClick={() => handleGoToStep(1)}>
+        <div className="logo-container" onClick={() => scrollToSection('hero')}>
           <span className="logo-text">mantech</span>
           <span className="logo-sparkle">✦</span>
         </div>
         
-        <div className="step-indicator">
-          <span>Step {currentStep.number} of 4:</span> {currentStep.title}
+        <nav className="header-nav">
+          <button 
+            className={`header-nav-link ${activeSection === 'hero' ? 'active' : ''}`}
+            onClick={() => scrollToSection('hero')}
+          >
+            Intro
+          </button>
+          <button 
+            className={`header-nav-link ${activeSection === 'portfolio' ? 'active' : ''}`}
+            onClick={() => scrollToSection('portfolio')}
+          >
+            Work
+          </button>
+          <button 
+            className={`header-nav-link ${activeSection === 'pricing' ? 'active' : ''}`}
+            onClick={() => scrollToSection('pricing')}
+          >
+            Pricing
+          </button>
+          <button 
+            className={`header-nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+            onClick={() => scrollToSection('contact')}
+          >
+            Briefing Hub
+          </button>
+        </nav>
+
+        <div>
+          <button onClick={() => scrollToSection('contact')} className="btn-tech">
+            Get Started
+          </button>
         </div>
       </header>
-
-      {/* Side Dot Navigation */}
-      <div className="progress-container">
-        <div className="progress-line-bg"></div>
-        <div 
-          className="progress-line-active" 
-          style={{ height: `${((activeStep - 1) / 3) * 100}%` }}
-        ></div>
-        
-        {steps.map((step) => (
-          <div
-            key={step.number}
-            className={`progress-dot ${activeStep === step.number ? 'active' : ''}`}
-            onClick={() => handleGoToStep(step.number)}
-          >
-            <div className="progress-label">
-              {step.subtitle} — {step.title}
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* Main SPA Sections Wrapper */}
       <main className="main-wrapper">
         {/* Section 1: Hero */}
-        <section className={`section-container ${activeStep === 1 ? 'active' : ''}`}>
-          <Hero onNext={handleNextStep} />
+        <section id="hero" className="section-container">
+          <Hero onNext={() => scrollToSection('portfolio')} />
         </section>
 
         {/* Section 2: Portfolio */}
-        <section className={`section-container ${activeStep === 2 ? 'active' : ''}`}>
-          <Portfolio onNext={handleNextStep} onBack={handleBackStep} />
+        <section id="portfolio" className="section-container">
+          <Portfolio onNext={() => scrollToSection('pricing')} />
         </section>
 
         {/* Section 3: Pricing */}
-        <section className={`section-container ${activeStep === 3 ? 'active' : ''}`}>
-          <Pricing onSelectPlan={handleSelectPlan} onBack={handleBackStep} />
+        <section id="pricing" className="section-container">
+          <Pricing onSelectPlan={handleSelectPlan} />
         </section>
 
         {/* Section 4: Contact Form */}
-        <section className={`section-container ${activeStep === 4 ? 'active' : ''}`}>
-          <Contact selectedPlan={selectedPlan} onBack={handleBackStep} />
+        <section id="contact" className="section-container">
+          <Contact selectedPlan={selectedPlan} />
         </section>
       </main>
-
-      {/* Persistent Bottom Exoskeleton Navigation Bar */}
-      <footer className="app-footer">
-        <div>
-          {activeStep > 1 ? (
-            <button onClick={handleBackStep} className="btn-tech-link">
-              ← Prev
-            </button>
-          ) : (
-            <span style={{ display: 'inline-block', width: '40px' }}></span>
-          )}
-        </div>
-        
-        <div className="footer-center-steps">
-          {steps.map((step) => (
-            <span
-              key={step.number}
-              className={`footer-step-dot ${activeStep === step.number ? 'active' : ''}`}
-              onClick={() => handleGoToStep(step.number)}
-              title={step.subtitle}
-            >
-              {step.number}
-            </span>
-          ))}
-        </div>
-
-        <div>
-          {activeStep < 4 ? (
-            <button onClick={handleNextStep} className="btn-tech">
-              Next: {steps[activeStep].subtitle} →
-            </button>
-          ) : (
-            <span style={{ display: 'inline-block', width: '80px' }}></span>
-          )}
-        </div>
-      </footer>
     </>
   );
 }

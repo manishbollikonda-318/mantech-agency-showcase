@@ -1,12 +1,11 @@
 import React from 'react';
-import { ArrowRight, ChevronLeft, HelpCircle } from 'lucide-react';
+import { ArrowRight, HelpCircle } from 'lucide-react';
 
 interface PricingProps {
   onSelectPlan: (planName: string) => void;
-  onBack: () => void;
 }
 
-export const Pricing: React.FC<PricingProps> = ({ onSelectPlan, onBack }) => {
+export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
   const tiers = [
     {
       name: 'Standard Showcase',
@@ -137,12 +136,6 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan, onBack }) => {
           <p className="portfolio-desc-mono" style={{ textTransform: 'none' }}>
             <strong>Personal Domain Connection:</strong> Domain name purchasing is not included in the plans. You must supply your own domain name and we will map it to your website at no extra cost.
           </p>
-        </div>
-        
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-          <button onClick={onBack} className="btn-tech-link">
-            <ChevronLeft size={14} /> Back to Showcase
-          </button>
         </div>
       </div>
     </div>

@@ -58,12 +58,12 @@ function App() {
 
       {/* Persistent App Header */}
       <header className="app-header">
-        <div className="logo" onClick={() => handleGoToStep(1)}>
-          <div className="logo-icon">M</div>
-          <span>ManTech</span>
+        <div className="logo-container" onClick={() => handleGoToStep(1)}>
+          <span className="logo-text">mantech</span>
+          <span className="logo-sparkle">✦</span>
         </div>
         
-        <div className="header-step">
+        <div className="step-indicator">
           <span>Step {currentStep.number} of 4:</span> {currentStep.title}
         </div>
       </header>

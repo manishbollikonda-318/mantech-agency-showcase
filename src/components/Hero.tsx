@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Cpu, Sparkles, Terminal } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onNext: () => void;
@@ -7,64 +7,61 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNext }) => {
   return (
-    <div className="hero-layout">
-      <div className="hero-content">
-        <div className="hero-tag">
-          <Sparkles size={14} className="premium-glow-cyan" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
-          ManTech Web Engineering
+    <div className="grid-container hero-layout-grid">
+      {/* Left Cell: Logo and CTA */}
+      <div className="grid-cell hero-left crosshair-cell">
+        <div>
+          <span className="mono-label">✦ Established 2026</span>
+          <h1 className="hero-logo-large">mantech<span className="logo-sparkle">✦</span></h1>
         </div>
         
-        <h1 className="hero-title">
-          Designing Digital <span className="gradient-text">Flagships</span> For High-Growth Brands
-        </h1>
-        
-        <p className="hero-subtitle">
-          ManTech turns bold ideas into high-performance web experiences. We construct custom, conversion-first digital solutions optimized for speed, reliability, and scale.
-        </p>
-        
-        <div style={{ display: 'flex', gap: '1rem', width: '100%', flexWrap: 'wrap' }}>
-          <button onClick={onNext} className="btn btn-primary">
-            Explore Our Showcase
-            <ArrowRight size={18} />
+        <div style={{ marginTop: '2rem' }}>
+          <button onClick={onNext} className="btn-tech">
+            Enter Showcase
+            <ArrowRight size={14} />
           </button>
         </div>
       </div>
-      
-      <div className="hero-visual">
-        <div className="hero-card-glow"></div>
-        <div className="floating-graphics-container">
-          <div className="graphic-core">
-            <div className="graphic-header">
-              <div className="graphic-dot" style={{ backgroundColor: '#EF4444' }}></div>
-              <div className="graphic-dot" style={{ backgroundColor: '#F59E0B' }}></div>
-              <div className="graphic-dot" style={{ backgroundColor: '#10B981' }}></div>
-            </div>
-            
-            <div className="graphic-wireframe">
-              <div className="wire-row accent-1"></div>
-              <div className="wire-row accent-2"></div>
-              <div className="wire-row"></div>
-              
-              <div className="wire-grid">
-                <div className="wire-box"></div>
-                <div className="wire-box"></div>
-              </div>
-              
-              <div className="wire-row" style={{ width: '90%' }}></div>
-              <div className="wire-row" style={{ width: '60%' }}></div>
-            </div>
-          </div>
-          
-          <div className="graphic-floating-sticker-top">
-            <Cpu size={18} className="premium-glow-purple" />
-            <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>60fps Motion</span>
-          </div>
-          
-          <div className="graphic-floating-sticker">
-            <Terminal size={18} className="premium-glow-cyan" />
-            <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>React & TS</span>
-          </div>
+
+      {/* Right Cell: Monospace Pitch and Custom Stippled Cosmic Sphere */}
+      <div className="grid-cell hero-right crosshair-cell" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        {/* Spirograph Logo & Paragraph Block */}
+        <div className="hero-paragraph-block">
+          <svg width="48" height="48" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" style={{ opacity: 0.85 }}>
+            <circle cx="50" cy="50" r="20" />
+            <circle cx="35" cy="50" r="15" />
+            <circle cx="65" cy="50" r="15" />
+            <circle cx="50" cy="35" r="15" />
+            <circle cx="50" cy="65" r="15" />
+          </svg>
+          <p className="hero-desc-mono">
+            mantech doesn't just design and code. We construct premium, tailored digital spaces that inspire, connect, and elevate the way people experience the web. We engineer what the internet can be.
+          </p>
         </div>
+
+        {/* Dynamic Grainy Cosmic Sphere Graphic */}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+          <svg width="220" height="220" viewBox="0 0 200 200">
+            <defs>
+              <radialGradient id="heroPlanetGrad" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                <stop offset="40%" stopColor="#1e54d4" stopOpacity="0.55" />
+                <stop offset="75%" stopColor="#051233" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#000000" stopOpacity="1" />
+              </radialGradient>
+              <filter id="heroNoiseFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" result="noise" />
+                <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.35 0" />
+                <feComposite operator="in" in2="SourceGraphic" />
+              </filter>
+            </defs>
+            <circle cx="100" cy="100" r="70" fill="url(#heroPlanetGrad)" />
+            <circle cx="100" cy="100" r="70" fill="url(#heroPlanetGrad)" filter="url(#heroNoiseFilter)" opacity="0.6" style={{ mixBlendMode: 'overlay' }} />
+            <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="0.7" transform="rotate(-15 100 100)" />
+          </svg>
+        </div>
+
+        <span className="mono-label" style={{ opacity: 0.5 }}>Architecting Digital realities</span>
       </div>
     </div>
   );

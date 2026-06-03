@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ChevronLeft, ExternalLink, TrendingUp } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ExternalLink, Activity } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -20,81 +20,77 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onNext, onBack }) => {
     {
       title: 'Vitras',
       niche: 'Luxury Architecture & Interiors',
-      metric: '75% Growth in Direct Inquiries',
-      description: 'A visually immersive digital catalogue and brand portfolio engineered for displaying high-end architectural concepts and premium furniture designs.',
+      metric: '75% Inquiry Increase',
+      description: 'A visually rich digital catalog engineered to present high-end architectural concepts and designer furniture collections.',
       url: 'https://www.vitras.in',
       imageUrl: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
     },
     {
       title: 'HandConnect AR',
-      niche: 'Augmented Reality & Web3',
-      metric: '92% Interactive Engagement Rate',
-      description: 'An advanced browser-based Augmented Reality application leveraging machine learning for real-time hand gesture tracking and 3D UI control.',
+      niche: 'Augmented Reality interface',
+      metric: '92% Active Engagement',
+      description: 'A browser-based computer vision application tracking hand gestures in real-time for interactive 3D UI control.',
       url: 'https://handconnect-ar.netlify.app/',
       imageUrl: 'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=800&q=80',
     },
     {
       title: 'Event Evaluation',
-      niche: 'Analytics & Real-time Dashboards',
-      metric: '60% Faster Feedback Auditing',
-      description: 'A premium corporate event evaluation platform displaying real-time participant feedback matrices, dynamic charts, and scoring engines.',
+      niche: 'Real-time feedback Engine',
+      metric: '60% Faster Audit Loops',
+      description: 'A data audit panel visualizing corporate event evaluation matrices, scoring profiles, and session analytics.',
       url: 'https://eventevalution.netlify.app/',
       imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     }
   ];
 
   return (
-    <div className="portfolio-layout">
-      <h2 className="section-title">Our Digital <span className="gradient-text">Masterpieces</span></h2>
-      <p className="section-subtitle">
-        A hand-picked selection of high-performance websites and web applications engineered to elevate business metrics and user experience.
-      </p>
+    <div>
+      <div className="portfolio-header">
+        <span className="mono-label">✦ Curated Creations</span>
+        <h2 className="portfolio-title-mono">Engineered Masterpieces</h2>
+        <p className="portfolio-desc-mono">A showcase of high-performance digital projects built with technical precision.</p>
+      </div>
 
-      <div className="portfolio-slider-container">
-        <div className="portfolio-grid">
-          {projects.map((project, idx) => (
-            <div 
-              key={idx} 
-              className="project-card"
-              onClick={() => window.open(project.url, '_blank')}
-            >
-              <div 
-                className="project-card-bg"
-                style={{ backgroundImage: `url(${project.imageUrl})` }}
-              ></div>
-              
-              <div className="project-meta">
-                <span className="project-tag">{project.niche}</span>
-                <h3 className="project-title">{project.title}</h3>
-                
-                <p className="project-desc">{project.description}</p>
-                
-                <div className="project-metric">
-                  <TrendingUp size={16} />
-                  <span>{project.metric}</span>
-                </div>
-                
-                <div className="project-link">
-                  <span>Visit Application</span>
-                  <ExternalLink size={14} />
-                </div>
+      <div className="grid-container portfolio-grid-wire">
+        {projects.map((project, idx) => (
+          <div 
+            key={idx} 
+            className="grid-cell portfolio-card-wire crosshair-cell"
+            onClick={() => window.open(project.url, '_blank')}
+          >
+            <div>
+              <div className="portfolio-card-image-box">
+                <img src={project.imageUrl} alt={project.title} className="portfolio-card-image" />
+              </div>
+              <div className="portfolio-card-info">
+                <span className="mono-label" style={{ fontSize: '0.65rem', color: 'var(--color-accent)' }}>{project.niche}</span>
+                <h3 className="portfolio-card-title" style={{ marginTop: '0.25rem' }}>{project.title}</h3>
+                <p className="portfolio-card-desc">{project.description}</p>
               </div>
             </div>
-          ))}
-        </div>
+            
+            <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div className="portfolio-card-metric">
+                <Activity size={14} />
+                <span>{project.metric}</span>
+              </div>
+              <span className="btn-tech-link">
+                View Project <ExternalLink size={12} />
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-        <button onClick={onNext} className="btn btn-primary">
-          Explore Pricing
-          <ArrowRight size={18} />
+      <div style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', justifyContent: 'flex-start' }}>
+        <button onClick={onNext} className="btn-tech">
+          Continue to Pricing
+          <ArrowRight size={14} />
+        </button>
+        <button onClick={onBack} className="btn-tech-link">
+          <ChevronLeft size={14} /> Back to Intro
         </button>
       </div>
-
-      <button onClick={onBack} className="btn-back-section">
-        <ChevronLeft size={16} />
-        Back to Intro
-      </button>
     </div>
   );
 };

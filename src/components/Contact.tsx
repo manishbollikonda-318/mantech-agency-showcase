@@ -4,8 +4,8 @@ import { Send, ChevronLeft, Check, MessageSquare, Mail } from 'lucide-react';
 const InstagramIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={props.size || 24}
-    height={props.size || 24}
+    width={props.size || 20}
+    height={props.size || 20}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -23,8 +23,8 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number })
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={props.size || 24}
-    height={props.size || 24}
+    width={props.size || 20}
+    height={props.size || 20}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -55,11 +55,9 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Sync selected plan from pricing page if it changes
   useEffect(() => {
     if (selectedPlan) {
       setFormData(prev => ({ ...prev, plan: selectedPlan }));
-      // Automatically adjust slider budget based on plan
       if (selectedPlan.includes('Tier 3')) {
         setFormData(prev => ({ ...prev, budget: 10000 }));
       } else if (selectedPlan.includes('Tier 2')) {
@@ -72,17 +70,11 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      budget: parseInt(e.target.value)
-    }));
+    setFormData(prev => ({ ...prev, budget: parseInt(e.target.value) }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -91,12 +83,9 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
       alert('Please fill out your Name and Email address.');
       return;
     }
-    
-    // Simulate submission
     setIsSubmitted(true);
   };
 
-  // Format budget number with currency symbol
   const formatBudget = (value: number) => {
     if (value >= 30000) {
       return `₹30,000+`;
@@ -105,198 +94,197 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan, onBack }) => {
   };
 
   return (
-    <div className="contact-layout">
-      <div className="contact-info">
-        <h2 className="contact-headline">Let's Build Something <span className="gradient-text">Extraordinary</span> Together.</h2>
-        <p className="contact-subheadline">
-          Connect with us via our instant communication channels, or fill out the project briefing form to schedule an onboarding call.
-        </p>
+    <div>
+      <div className="portfolio-header" style={{ marginBottom: '3rem' }}>
+        <span className="mono-label">✦ Establish Connection</span>
+        <h2 className="portfolio-title-mono">Onboarding Briefing</h2>
+        <p className="portfolio-desc-mono">Submit details to schedule an engineering call or choose an instant channel.</p>
+      </div>
 
-        <div className="contact-channels">
-          {/* WhatsApp redirecting to 9762105295 */}
+      <div className="grid-container contact-grid-wire">
+        {/* Left Side: Communication buttons */}
+        <div className="grid-cell contact-channels-wire crosshair-cell" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          
+          {/* WhatsApp */}
           <a 
             href="https://wa.me/919762105295" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="channel-card channel-whatsapp"
+            className="contact-channel-button-wire"
           >
-            <div className="channel-meta">
-              <div className="channel-icon-wrapper">
-                <MessageSquare size={20} />
-              </div>
+            <div className="contact-channel-meta">
+              <MessageSquare size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
-                <h4 className="channel-title">WhatsApp</h4>
-                <p className="channel-subtitle">Chat Instantly</p>
+                <h4 className="contact-channel-title">WhatsApp</h4>
+                <p className="contact-channel-subtitle">Redirect to मनीष</p>
               </div>
             </div>
-            <span className="channel-action">Message Now →</span>
+            <span className="mono-label" style={{ fontSize: '0.65rem' }}>Open Chat →</span>
           </a>
 
-          {/* Instagram redirecting to @mantech_off */}
+          {/* Instagram */}
           <a 
             href="https://instagram.com/mantech_off" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="channel-card channel-instagram"
+            className="contact-channel-button-wire"
           >
-            <div className="channel-meta">
-              <div className="channel-icon-wrapper">
-                <InstagramIcon size={20} />
-              </div>
+            <div className="contact-channel-meta">
+              <InstagramIcon size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
-                <h4 className="channel-title">Instagram</h4>
-                <p className="channel-subtitle">@mantech_off</p>
+                <h4 className="contact-channel-title">Instagram</h4>
+                <p className="contact-channel-subtitle">@mantech_off</p>
               </div>
             </div>
-            <span className="channel-action">Follow & DM →</span>
+            <span className="mono-label" style={{ fontSize: '0.65rem' }}>Follow & DM →</span>
           </a>
 
-          {/* LinkedIn redirecting to www.linkedin.com/in/manishbollikonda */}
+          {/* LinkedIn */}
           <a 
             href="https://www.linkedin.com/in/manishbollikonda" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="channel-card channel-linkedin"
+            className="contact-channel-button-wire"
           >
-            <div className="channel-meta">
-              <div className="channel-icon-wrapper">
-                <LinkedinIcon size={20} />
-              </div>
+            <div className="contact-channel-meta">
+              <LinkedinIcon size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
-                <h4 className="channel-title">LinkedIn</h4>
-                <p className="channel-subtitle">Connect Professionally</p>
+                <h4 className="contact-channel-title">LinkedIn</h4>
+                <p className="contact-channel-subtitle">Manish Bollikonda</p>
               </div>
             </div>
-            <span className="channel-action">Connect →</span>
+            <span className="mono-label" style={{ fontSize: '0.65rem' }}>Connect →</span>
           </a>
 
-          {/* Google Email: manishbollikonda318@gmaail.com */}
+          {/* Email */}
           <a 
             href="mailto:manishbollikonda318@gmaail.com" 
-            className="channel-card channel-email"
+            className="contact-channel-button-wire"
           >
-            <div className="channel-meta">
-              <div className="channel-icon-wrapper">
-                <Mail size={20} />
-              </div>
+            <div className="contact-channel-meta">
+              <Mail size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
-                <h4 className="channel-title">Email Direct</h4>
-                <p className="channel-subtitle">manishbollikonda318@gmaail.com</p>
+                <h4 className="contact-channel-title">Email Direct</h4>
+                <p className="contact-channel-subtitle">manishbollikonda318@gmaail.com</p>
               </div>
             </div>
-            <span className="channel-action">Send Mail →</span>
+            <span className="mono-label" style={{ fontSize: '0.65rem' }}>Send Mail →</span>
           </a>
+        </div>
+
+        {/* Right Side: Form briefing */}
+        <div className="grid-cell contact-form-wire crosshair-cell">
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div>
+                <h3 className="contact-form-title">Briefing Document</h3>
+                <p className="portfolio-desc-mono" style={{ textTransform: 'none' }}>We will outline the technical blueprint after review.</p>
+              </div>
+
+              <div className="contact-form-group">
+                <label className="contact-form-label" htmlFor="name">Your Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  value={formData.name} 
+                  onChange={handleInputChange} 
+                  placeholder="Enter name" 
+                  className="contact-form-input"
+                  required
+                />
+              </div>
+
+              <div className="contact-form-group">
+                <label className="contact-form-label" htmlFor="email">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleInputChange} 
+                  placeholder="client@domain.com" 
+                  className="contact-form-input"
+                  required
+                />
+              </div>
+
+              <div className="contact-form-group">
+                <label className="contact-form-label" htmlFor="plan">Selected Tier</label>
+                <select 
+                  id="plan" 
+                  name="plan" 
+                  value={formData.plan} 
+                  onChange={handleInputChange} 
+                  className="contact-form-select"
+                >
+                  <option value="Not Selected">Select a tier...</option>
+                  <option value="Tier 3 (Standard Showcase)">Tier 3 (Standard Showcase) — ₹9,999+</option>
+                  <option value="Tier 2 (Business Flagship)">Tier 2 (Business Flagship) — ₹14,999+</option>
+                  <option value="Tier 1 (Enterprise Web App)">Tier 1 (Enterprise Web App) — ₹19,999+</option>
+                </select>
+              </div>
+
+              <div className="contact-form-group">
+                <div className="range-slider-display">
+                  <label className="contact-form-label">Target Budget</label>
+                  <span className="budget-val">{formatBudget(formData.budget)}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="9000" 
+                  max="30000" 
+                  step="1000" 
+                  value={formData.budget} 
+                  onChange={handleBudgetChange} 
+                  className="contact-form-range"
+                />
+              </div>
+
+              <div className="contact-form-group">
+                <label className="contact-form-label" htmlFor="message">Requirements</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  value={formData.message} 
+                  onChange={handleInputChange} 
+                  placeholder="Describe your design and timeline goals..." 
+                  className="contact-form-textarea"
+                  style={{ minHeight: '80px' }}
+                />
+              </div>
+
+              <button type="submit" className="btn-tech" style={{ width: '100%', marginTop: '0.5rem' }}>
+                Submit Brief
+                <Send size={12} />
+              </button>
+            </form>
+          ) : (
+            <div style={{ padding: '2rem 1rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid var(--text-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <Check size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Brief Registered</h3>
+              <p className="portfolio-desc-mono" style={{ textTransform: 'none', marginBottom: '2rem' }}>
+                Thank you, {formData.name}. We will contact you at {formData.email} within 24 hours.
+              </p>
+              <button 
+                onClick={() => setIsSubmitted(false)} 
+                className="btn-tech"
+                style={{ width: '100%' }}
+              >
+                Create New Brief
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="glass-panel contact-form-panel">
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit}>
-            <h3 className="form-title">Start a Project Brief</h3>
-            <p className="form-subtitle">Tell us about your goals, and we'll outline the architectural blueprint.</p>
-            
-            <div className="form-group">
-              <label className="form-label" htmlFor="name">Your Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleInputChange} 
-                placeholder="Manish Bollikonda" 
-                className="form-input"
-                required
-              />
-            </div>
-            
-            <div className="form-group">
-              <label className="form-label" htmlFor="email">Email Address</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleInputChange} 
-                placeholder="client@example.com" 
-                className="form-input"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label" htmlFor="plan">Selected Tier</label>
-              <select 
-                id="plan" 
-                name="plan" 
-                value={formData.plan} 
-                onChange={handleInputChange} 
-                className="form-input"
-                style={{ background: 'var(--bg-deep)' }}
-              >
-                <option value="Not Selected">Select a tier...</option>
-                <option value="Tier 3 (Standard Showcase)">Tier 3 (Standard Showcase) — ₹9,999+</option>
-                <option value="Tier 2 (Business Flagship)">Tier 2 (Business Flagship) — ₹14,999+</option>
-                <option value="Tier 1 (Enterprise Web App)">Tier 1 (Enterprise Web App) — ₹19,999+</option>
-              </select>
-            </div>
-
-            <div className="form-group form-range-container">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <label className="form-label">Target Budget</label>
-                <span className="budget-value">{formatBudget(formData.budget)}</span>
-              </div>
-              <input 
-                type="range" 
-                min="9000" 
-                max="30000" 
-                step="1000" 
-                value={formData.budget} 
-                onChange={handleBudgetChange} 
-                className="form-range"
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label" htmlFor="message">Project Requirements</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                value={formData.message} 
-                onChange={handleInputChange} 
-                placeholder="Describe your design goals, timeline, and features..." 
-                className="form-textarea"
-              />
-            </div>
-
-            <button type="submit" className="btn btn-primary form-submit-btn">
-              Submit Project Brief
-              <Send size={16} />
-            </button>
-          </form>
-        ) : (
-          <div className="success-message">
-            <div className="success-icon-wrapper">
-              <Check size={32} />
-            </div>
-            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1rem' }}>Brief Received!</h3>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '0.95rem' }}>
-              Thank you, {formData.name}. We will review your briefing files and contact you at {formData.email} within 24 hours.
-            </p>
-            <button 
-              onClick={() => setIsSubmitted(false)} 
-              className="btn btn-secondary"
-              style={{ width: '100%' }}
-            >
-              Submit Another Brief
-            </button>
-          </div>
-        )}
+      <div style={{ marginTop: '2.5rem' }}>
+        <button onClick={onBack} className="btn-tech-link">
+          <ChevronLeft size={14} /> Back to Pricing
+        </button>
       </div>
-
-      <button onClick={onBack} className="btn-back-section">
-        <ChevronLeft size={16} />
-        Back to Pricing
-      </button>
     </div>
   );
 };

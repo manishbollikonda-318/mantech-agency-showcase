@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Check, ChevronLeft, HelpCircle } from 'lucide-react';
+import { ArrowRight, ChevronLeft, HelpCircle } from 'lucide-react';
 
 interface PricingProps {
   onSelectPlan: (planName: string) => void;
@@ -13,112 +13,138 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan, onBack }) => {
       tierLabel: 'Tier 3',
       price: '₹9,999',
       priceSuffix: 'onwards',
-      desc: 'Ideal for solopreneurs & startups seeking a high-converting, premium landing page.',
+      desc: 'High-converting, premium single page landing pages built with custom grid layouts.',
       features: [
-        '3 Free design iterations/trials after delivery',
-        'Responsive layout for all devices (Mobile/Tablet/Desktop)',
-        'Personal domain integration (Client-provided)',
-        'Speed optimization (Under 2s load time)',
-        'Essential SEO metadata setup',
-        'Additional iterations: ₹1,000 per revisions'
+        '3 Free iterations / design trials',
+        'Fully responsive client-side layout',
+        'Personal domain integration',
+        'Vite + React framework setup',
+        'Essential SEO tag mapping',
+        'Extra iterations: ₹1,000 / revision'
       ],
       isPopular: false,
-      cta: 'Choose Tier 3'
+      cta: 'Select Tier 3'
     },
     {
       name: 'Business Flagship',
       tierLabel: 'Tier 2',
       price: '₹14,999',
       priceSuffix: 'onwards',
-      desc: 'Our most sought-after plan, introducing high-fidelity animations and full interactive modules.',
+      desc: 'Our flagship tier, introducing handcrafted micro-animations and custom SVG assets.',
       features: [
-        'Everything in Tier 3 included',
-        'Bespoke micro-interactions & smooth scroll animations',
-        'Advanced glassmorphism & premium typography layout',
-        'High-converting interactive lead elements',
-        'Google Analytics & conversion tracking setup',
-        'Personal domain integration (Client-provided)'
+        'All features of Tier 3 included',
+        'Bespoke fluid scroll animations',
+        'Interactive UI components & forms',
+        'Full custom styling & fonts',
+        'Targeted performance tuning (95+)',
+        'Domain setup & launch configuration'
       ],
       isPopular: true,
-      cta: 'Choose Tier 2'
+      cta: 'Select Tier 2'
     },
     {
       name: 'Enterprise Web App',
       tierLabel: 'Tier 1',
       price: '₹19,999',
       priceSuffix: 'onwards',
-      desc: 'For brands requiring fully custom dashboards, database integrations, or interactive AR widgets.',
+      desc: 'Complex single page applications, interactive dashboards, or custom AR integrations.',
       features: [
-        'Everything in Tier 2 included',
-        'Highly responsive React & TypeScript single page applications',
-        'Interactive dashboards & custom data visualizations',
-        'Advanced API & content database integrations (headless CMS)',
-        'Personal domain integration (Client-provided)',
-        'High-performance cloud deployment architecture'
+        'All features of Tier 2 included',
+        'Custom React & TS application state',
+        'Interactive dashboards & charts',
+        'API & headless CMS integrations',
+        'Cloud deployment pipeline config',
+        'Dedicated SLA maintenance support'
       ],
       isPopular: false,
-      cta: 'Choose Tier 1'
+      cta: 'Select Tier 1'
     }
   ];
 
   return (
-    <div className="pricing-layout">
-      <h2 className="section-title">Transparent <span className="gradient-text">Architectural</span> Pricing</h2>
-      <p className="section-subtitle">
-        Simple, feature-rich tiers tailored to your digital engineering needs. Scale your project seamlessly.
-      </p>
+    <div>
+      <div className="portfolio-header">
+        <span className="mono-label">✦ Project Pricing</span>
+        <h2 className="portfolio-title-mono">Transparent Frameworks</h2>
+        <p className="portfolio-desc-mono">Bespoke pricing tiers optimized for clarity, revision freedom, and performance.</p>
+      </div>
 
-      <div className="pricing-grid">
+      <div className="grid-container pricing-grid-wire">
         {tiers.map((tier, idx) => (
           <div 
             key={idx} 
-            className={`glass-panel pricing-card ${tier.isPopular ? 'featured' : ''}`}
+            className={`grid-cell pricing-card-wire crosshair-cell ${tier.isPopular ? 'featured' : ''}`}
+            style={{ position: 'relative' }}
           >
-            {tier.isPopular && <div className="pricing-ribbon">Popular</div>}
-            
-            <span className="pricing-tier">{tier.tierLabel}</span>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', fontWeight: 800 }}>{tier.name}</h3>
-            
-            <div className="pricing-price">
-              {tier.price}
-              <span style={{ marginLeft: '4px', fontSize: '1rem', fontWeight: 500, color: 'var(--text-muted)' }}>
-                {tier.priceSuffix}
-              </span>
+            {/* If popular, render stippled cosmic shadow background filter */}
+            {tier.isPopular && (
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', zIndex: -1, pointerEvents: 'none', opacity: 0.12 }}>
+                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="cardGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#0a35a5" stopOpacity="0" />
+                    </radialGradient>
+                    <filter id="cardNoise">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise" />
+                      <feComposite operator="in" in2="SourceGraphic" />
+                    </filter>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#cardGlow)" filter="url(#cardNoise)" />
+                </svg>
+              </div>
+            )}
+
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span className="mono-label" style={{ color: tier.isPopular ? 'var(--text-bright)' : 'var(--text-muted)' }}>
+                  {tier.tierLabel}
+                </span>
+                {tier.isPopular && <span className="mono-label" style={{ fontSize: '0.65rem', border: '1px solid rgba(255,255,255,0.3)', padding: '0.1rem 0.4rem' }}>Popular</span>}
+              </div>
+              <h3 className="pricing-card-title-mono" style={{ marginTop: '0.5rem' }}>{tier.name}</h3>
+              <p className="portfolio-card-desc" style={{ marginTop: '0.5rem', minHeight: '44px' }}>{tier.desc}</p>
+              
+              <div className="pricing-card-price-mono">
+                {tier.price}
+                <span>/ {tier.priceSuffix}</span>
+              </div>
+
+              <ul className="pricing-card-features-list">
+                {tier.features.map((feature, fIdx) => (
+                  <li key={fIdx} className="pricing-card-feature-item">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
-            
-            <p className="pricing-desc">{tier.desc}</p>
-            
-            <ul className="pricing-features">
-              {tier.features.map((feature, fIdx) => (
-                <li key={fIdx} className="pricing-feature-item">
-                  <Check size={16} className="pricing-feature-icon" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-            
+
             <button 
               onClick={() => onSelectPlan(tier.tierLabel + ' (' + tier.name + ')')}
-              className={`btn pricing-btn ${tier.isPopular ? 'btn-primary' : 'btn-secondary'}`}
+              className="btn-tech"
+              style={{ width: '100%' }}
             >
               {tier.cta}
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
             </button>
           </div>
         ))}
       </div>
 
-      <div className="pricing-matrix-note">
-        <p>
-          <HelpCircle size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle', color: 'var(--color-secondary)' }} />
-          <strong>Domain Notice:</strong> Domain name purchasing is <span>not included</span> in these prices. You must have your own personal domain name, and we will integrate and configure it for your website free of charge.
-        </p>
+      <div style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', opacity: 0.7 }}>
+          <HelpCircle size={14} style={{ marginTop: '0.2rem', color: 'var(--text-muted)' }} />
+          <p className="portfolio-desc-mono" style={{ textTransform: 'none' }}>
+            <strong>Personal Domain Connection:</strong> Domain name purchasing is not included in the plans. You must supply your own domain name and we will map it to your website at no extra cost.
+          </p>
+        </div>
+        
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+          <button onClick={onBack} className="btn-tech-link">
+            <ChevronLeft size={14} /> Back to Showcase
+          </button>
+        </div>
       </div>
-
-      <button onClick={onBack} className="btn-back-section">
-        <ChevronLeft size={16} />
-        Back to Showcase
-      </button>
     </div>
   );
 };

@@ -121,11 +121,15 @@ h1, h2, h3, h4 {
   align-items: stretch;
   min-height: calc(100vh - 8rem); /* Occupy full viewport minus header space */
   padding: 6rem 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
 }
 
 #hero.section-container {
   min-height: calc(100vh - 10.5rem);
   padding: 1rem 0;
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
 }
 
 /* Custom Navigation Bar Styles */
@@ -787,7 +791,7 @@ h1, h2, h3, h4 {
 /* 3. Scroll Reveal System */
 .reveal-element {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translate3d(0, 24px, 0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
@@ -795,7 +799,7 @@ h1, h2, h3, h4 {
 
 .reveal-element.reveal-active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* 4. Client Testimonials Section */

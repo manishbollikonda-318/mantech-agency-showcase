@@ -162,7 +162,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
             <div key={idx} className="testimonial-card">
               <p className="testimonial-quote">"{t.quote}"</p>
               <div className="testimonial-author-block">
-                <img src={t.avatar} alt={t.author} className="testimonial-avatar" />
+                <img src={t.avatar} alt={t.author} className="testimonial-avatar" loading="lazy" decoding="async" />
                 <div>
                   <div className="testimonial-author-name">{t.author}</div>
                   <div className="testimonial-author-role">{t.role}</div>

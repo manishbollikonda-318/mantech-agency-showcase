@@ -12,19 +12,19 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
       <div className="grid-cell hero-left crosshair-cell reveal-element">
         <div>
           <span className="mono-label">✦ ESTABLISHED 2026</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginTop: '1rem', flexWrap: 'wrap' }}>
-            <img src="/favicon.svg" alt="MANISTEC Logo" style={{ width: '68px', height: '68px', filter: 'drop-shadow(0 0 16px rgba(59, 130, 246, 0.4))', display: 'block' }} />
-            <h1 className="hero-logo-large" style={{ marginTop: 0, marginBottom: 0 }}>MANISTEC</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
+            <img src="/favicon.svg" alt="MANISTEC Logo" style={{ width: '56px', height: '56px', filter: 'drop-shadow(0 0 16px rgba(59, 130, 246, 0.4))', display: 'block' }} />
+            <h1 className="hero-logo-large" style={{ marginTop: 0, marginBottom: 0, fontSize: '4rem' }}>MANISTEC</h1>
           </div>
-          <p style={{ fontSize: '1.25rem', fontFamily: 'var(--font-heading)', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '0.5rem', fontWeight: 500 }}>
+          <p style={{ fontSize: '1.15rem', fontFamily: 'var(--font-heading)', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '0.5rem', fontWeight: 500 }}>
             PREMIUM WEB CREATION
           </p>
-          <p style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '1rem', fontWeight: 700 }}>
+          <p style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '0.75rem', fontWeight: 700 }}>
             BUILT BY MANISH BOLLIKONDA
           </p>
         </div>
         
-        <div style={{ marginTop: '2.5rem' }}>
+        <div style={{ marginTop: '1.75rem' }}>
           <button onClick={onNext} className="btn-tech btn-tech-pulse">
             Enter Showcase
             <ArrowRight size={14} />
@@ -33,10 +33,10 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
       </div>
 
       {/* Right Cell: Monospace Pitch and Custom Stippled Cosmic Sphere */}
-      <div className="grid-cell hero-right crosshair-cell reveal-element" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className="grid-cell hero-right crosshair-cell reveal-element" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1.25rem', alignItems: 'flex-start' }}>
         {/* Spirograph Logo & Paragraph Block */}
-        <div className="hero-paragraph-block">
-          <svg width="48" height="48" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" style={{ opacity: 0.85 }}>
+        <div className="hero-paragraph-block" style={{ gap: '0.75rem' }}>
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" style={{ opacity: 0.85 }}>
             <circle cx="50" cy="50" r="20" />
             <circle cx="35" cy="50" r="15" />
             <circle cx="65" cy="50" r="15" />
@@ -49,10 +49,10 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
         </div>
 
         {/* Dynamic Grainy Cosmic Sphere Graphic (Larger on Desktop, responsive on Mobile) */}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '2.5rem 0' }}>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '0.5rem 0' }}>
           <svg 
             viewBox="0 0 200 200" 
-            style={{ width: '100%', maxWidth: '380px', height: 'auto', display: 'block' }}
+            style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }}
           >
             <defs>
               <radialGradient id="heroPlanetGrad" cx="30%" cy="30%" r="70%">
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
           </svg>
         </div>
 
-        <span className="mono-label" style={{ opacity: 0.5 }}>Architecting Digital realities</span>
+        <span className="mono-label" style={{ opacity: 0.5, fontSize: '0.7rem' }}>Architecting Digital realities</span>
       </div>
     </div>
   );

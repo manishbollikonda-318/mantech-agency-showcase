@@ -9,7 +9,7 @@ interface Message {
 export const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: "Hello! I am the MANTECH AI Briefing Assistant. How can I help you build your digital masterpiece today?" }
+    { sender: 'bot', text: "Hello! I am the MANISTEC AI Briefing Assistant. How can I help you build your digital masterpiece today?" }
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -41,7 +41,7 @@ export const Chatbot: React.FC = () => {
       const query = text.toLowerCase();
 
       if (query.includes('price') || query.includes('pricing') || query.includes('cost')) {
-        botResponse = "MANTECH offers three premium tiers optimized for performance:\n\n✦ Tier 3 (Standard Showcase): ₹9,999 onwards (Ideal for high-converting landing pages)\n✦ Tier 2 (Business Flagship): ₹14,999 onwards (Bespoke animations & custom SVGs)\n✦ Tier 1 (Enterprise Web App): ₹19,999 onwards (Dashboards & complex state)\n\nAll pricing scales depending on iterations. Would you like to check the Briefing Document at the bottom of the page to choose a tier?";
+        botResponse = "MANISTEC offers three premium tiers optimized for performance:\n\n✦ Tier 3 (Standard Showcase): ₹9,999 onwards (Ideal for high-converting landing pages)\n✦ Tier 2 (Business Flagship): ₹14,999 onwards (Bespoke animations & custom SVGs)\n✦ Tier 1 (Enterprise Web App): ₹19,999 onwards (Dashboards & complex state)\n\nAll pricing scales depending on iterations. Would you like to check the Briefing Document at the bottom of the page to choose a tier?";
       } else if (query.includes('timeline') || query.includes('delivery') || query.includes('time') || query.includes('long')) {
         botResponse = "Standard Showcase landing pages are typically delivered in 3 to 5 business days. Flagship or custom interactive web applications range from 1 to 3 weeks depending on the design complexity. We guarantee premium, clean code and 95+ performance scores.";
       } else if (query.includes('brief') || query.includes('start') || query.includes('contact') || query.includes('get started')) {
@@ -124,7 +124,7 @@ export const Chatbot: React.FC = () => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Sparkles size={14} style={{ color: 'var(--color-accent)' }} />
-              <span className="mono-label" style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: 'var(--text-bright)' }}>MANTECH AI ASSISTANT</span>
+              <span className="mono-label" style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: 'var(--text-bright)' }}>MANISTEC AI ASSISTANT</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}

@@ -87,8 +87,8 @@ function App() {
       {/* Persistent App Header */}
       <header className="app-header">
         <div className="logo-container" onClick={() => { scrollToSection('hero'); setMobileMenuOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <img src="/favicon.svg" alt="MANTECH Logo" style={{ width: '22px', height: '22px', display: 'block' }} />
-          <span className="logo-text">MANTECH</span>
+          <img src="/favicon.svg" alt="MANISTEC Logo" style={{ width: '22px', height: '22px', display: 'block' }} />
+          <span className="logo-text">MANISTEC</span>
         </div>
         
         {/* Desktop Navigation */}

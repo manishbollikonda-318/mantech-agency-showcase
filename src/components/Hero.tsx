@@ -13,8 +13,8 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
         <div>
           <span className="mono-label">✦ ESTABLISHED 2026</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginTop: '1rem', flexWrap: 'wrap' }}>
-            <img src="/favicon.svg" alt="MANTECH Logo" style={{ width: '68px', height: '68px', filter: 'drop-shadow(0 0 16px rgba(59, 130, 246, 0.4))', display: 'block' }} />
-            <h1 className="hero-logo-large" style={{ marginTop: 0, marginBottom: 0 }}>MANTECH</h1>
+            <img src="/favicon.svg" alt="MANISTEC Logo" style={{ width: '68px', height: '68px', filter: 'drop-shadow(0 0 16px rgba(59, 130, 246, 0.4))', display: 'block' }} />
+            <h1 className="hero-logo-large" style={{ marginTop: 0, marginBottom: 0 }}>MANISTEC</h1>
           </div>
           <p style={{ fontSize: '1.25rem', fontFamily: 'var(--font-heading)', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '0.5rem', fontWeight: 500 }}>
             PREMIUM WEB CREATION
@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ onNext }) => {
             <circle cx="50" cy="65" r="15" />
           </svg>
           <p className="hero-desc-mono">
-            Welcome to MANTECH. We design and engineer premium, high-performance websites that captivate audiences and drive results. We believe your digital presence should be as unique as your vision—blending sleek visual architecture with state-of-the-art technology to build fast, responsive, and memorable web experiences. Let's collaborate to build something extraordinary.
+            Welcome to MANISTEC. We design and engineer premium, high-performance websites that captivate audiences and drive results. We believe your digital presence should be as unique as your vision—blending sleek visual architecture with state-of-the-art technology to build fast, responsive, and memorable web experiences. Let's collaborate to build something extraordinary.
           </p>
         </div>
 

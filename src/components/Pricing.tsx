@@ -62,7 +62,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
 
   const testimonials = [
     {
-      quote: "MANTECH delivered our flagship brand platform with flawless execution. The custom animations are fluid and performant, exactly as promised.",
+      quote: "MANISTEC delivered our flagship brand platform with flawless execution. The custom animations are fluid and performant, exactly as promised.",
       author: "SARAH CHEN",
       role: "DESIGN DIRECTOR, NEXUS",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"

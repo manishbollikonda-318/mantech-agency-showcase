@@ -84,7 +84,7 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
     }
     
     // Compile details into a readable prefilled WhatsApp message
-    const messageText = `Hello ManTech! 
+    const messageText = `Hello ManisTec! 
 
 *Onboarding Project Brief*
 - Name: ${formData.name}
@@ -140,7 +140,7 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
 
           {/* Instagram */}
           <a 
-            href="https://instagram.com/mantech_off" 
+            href="https://instagram.com/manistec_off" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="contact-channel-button-wire"
@@ -149,7 +149,7 @@ export const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
               <InstagramIcon size={18} style={{ color: 'var(--text-bright)' }} />
               <div>
                 <h4 className="contact-channel-title">Instagram</h4>
-                <p className="contact-channel-subtitle">@mantech_off</p>
+                <p className="contact-channel-subtitle">@manistec_off</p>
               </div>
             </div>
             <span className="mono-label" style={{ fontSize: '0.65rem' }}>Follow & DM →</span>

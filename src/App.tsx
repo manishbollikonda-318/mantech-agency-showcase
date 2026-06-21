@@ -28,27 +28,34 @@ function App() {
     }, 50);
   };
 
-  // Scroll Spy for highlighting active section in Header Nav
+  // Scroll Spy for highlighting active section in Header Nav using Intersection Observer
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'portfolio', 'pricing', 'contact'];
-      const scrollPos = window.scrollY + 120; // Offset for sticky header
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+    const sections = ['hero', 'portfolio', 'pricing', 'contact'];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-140px 0px -50% 0px', // Top offset accounts for sticky header, bottom offset triggers section update when scrolled past half
+      threshold: 0
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        observer.observe(el);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // Intersection Observer for Scroll Reveals
@@ -58,6 +65,8 @@ function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-active');
+            // Unobserve once revealed to free resources
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -67,18 +76,19 @@ function App() {
       }
     );
 
-    const elements = document.querySelectorAll('.reveal-element');
-    elements.forEach((el) => observer.observe(el));
+    const observeElements = () => {
+      const elements = document.querySelectorAll('.reveal-element');
+      elements.forEach((el) => observer.observe(el));
+    };
 
-    // Re-check elements after a small timeout to cover immediate mounting
-    const timer = setTimeout(() => {
-      const updatedElements = document.querySelectorAll('.reveal-element');
-      updatedElements.forEach((el) => observer.observe(el));
-    }, 200);
+    observeElements();
+
+    // Re-check elements after a small timeout to cover immediate mounting of children components
+    const timer = setTimeout(observeElements, 200);
 
     return () => {
       clearTimeout(timer);
-      elements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
     };
   }, []);
 
